@@ -8,6 +8,7 @@ import InputBase from '@mui/material/InputBase';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -54,6 +55,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function ResponsiveAppBar() {
+  const navigate = useNavigate()
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: '#F80032', height: '80px' }}>
@@ -63,6 +66,8 @@ export default function ResponsiveAppBar() {
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' }, fontSize: '32px', }}
+            onClick={() => navigate('/')}
+            className='hover:cursor-pointer'
           >
             <u>LOGO</u>
           </Typography>

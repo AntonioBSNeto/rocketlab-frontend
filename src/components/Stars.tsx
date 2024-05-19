@@ -22,7 +22,7 @@ const renderStars = (rate: number) => {
   return stars;
 };
 
-export default function Stars({ rate, amount }: StarsProps) {
+export default function Stars({ rate, amount, }: StarsProps) {
   
   return (
     <Box className="flex gap-x-1 items-center">

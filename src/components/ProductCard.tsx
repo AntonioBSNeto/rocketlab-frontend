@@ -4,22 +4,46 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import { Product } from "../types/Product";
 import Stars from "./Stars";
+import priceFormat from "../util/priceFormat";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct, isProductInCartSelector, removeProduct } from "../features/cartSlice";
+import { RootState } from "../store";
+import CheckedCartIcon from "../util/svg/CheckedCart";
 
 interface ProductCardProps {
   product: Product;
 }
 
-const priceFormat = (value: number) => Intl.NumberFormat('pt-BR', {style: 'currency',currency: 'BRL'}).format(value)
-
-
 export default function ProductCard({ product }: ProductCardProps) {
+  const isInCart = useSelector((state: RootState) => isProductInCartSelector(state, parseInt(`${product.id}`)))
+  
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const toggleCartItem = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.stopPropagation();
+    if (product) {
+      if (isInCart) {
+        dispatch(removeProduct(product?.id))
+      } else {
+        dispatch(addProduct({product, quantity: 1}))
+      }
+    }
+  }
 
   return(
     <Card sx={{ borderRadius: '16px', '&:hover .icon-container': { opacity: 1 } }} className="flex flex-col">
-      <CardActionArea className="!pt-2 !px-3 !pb-0 !flex  flex-col justify-end">
+      <CardActionArea className="!pt-2 !px-3 !pb-0 !flex  flex-col justify-end" onClick={() => navigate(`/produtos/${product.id}`) }>
         <Box className="flex justify-end gap-x-2 icon-container w-full"  sx={{ opacity: 0, transition: 'opacity 0.3s ease-in-out' }} >
-          <AddShoppingCartIcon className="hover:text-[#F80032] fill-[red]"  />
           <FavoriteBorderIcon className="hover:text-[#F80032]" />
+
+          <CardActions onClick={toggleCartItem} className="!p-0" >
+            { isInCart ?
+              <CheckedCartIcon /> :
+              <AddShoppingCartIcon className="hover:text-[#F80032] fill-[red]"/>
+            }
+          </CardActions>
         </Box>
         <Box className="w-56 h-32 ">
           <CardMedia
