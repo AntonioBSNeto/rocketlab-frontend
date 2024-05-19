@@ -95,7 +95,7 @@ export default function ResponsiveAppBar() {
               size="large"
               color="inherit"
               aria-label="open drawer"
-              onClick={() => console.log('carrinho')}
+              onClick={() => navigate('/carrinho')}
             >
               <ShoppingCartOutlinedIcon sx={{ display: { xs: 'flex' }, fontSize: '30px' }} />
             </IconButton>

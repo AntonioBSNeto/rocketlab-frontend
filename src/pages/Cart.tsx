@@ -7,12 +7,15 @@ import ProductCart from "../components/ProductCart";
 import { useSelector } from "react-redux";
 import { selectCartItems, selectCartTotal, selectCartTotalItems } from "../features/cartSlice";
 import priceFormat from "../util/priceFormat";
+import { useNavigate } from "react-router-dom";
 
 export default function CartPage() {
   const productsInCart = useSelector(selectCartItems);
 
   const cartTotalProducts = useSelector(selectCartTotalItems);
   const cartTotal = useSelector(selectCartTotal);
+
+  const navigate = useNavigate()
 
   const renderProducts = () => {
     return productsInCart.map(({ product, quantity }) => <ProductCart key={product.id} product={product} quantity={quantity} />)
@@ -56,7 +59,7 @@ export default function CartPage() {
               <span className="text-xs">em até 4x sem juros</span>
             </div>
           </Box>
-          <Button className="!bg-[#F80032] !text-white grow !text-lg hover:!bg-[#F20544] hover:brightness-90 !capitalize !mt-auto max-h-11 !rounded-none">continuar</Button>
+          <Button className="!bg-[#F80032] !text-white grow !text-lg hover:!bg-[#F20544] hover:brightness-90 !mt-auto max-h-11 !rounded-none" onClick={() => navigate('/endereco')}>continuar</Button>
         </Paper>
       </>
     )
