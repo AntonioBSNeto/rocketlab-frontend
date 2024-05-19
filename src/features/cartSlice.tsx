@@ -1,12 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Product } from '../types/Product';
 import { RootState } from '../store';
-
-
-interface CartItem {
-  product: Product
-  quantity: number
-}
+import { CartItem } from '../types/CartItem';
 
 interface CartState {
   items: CartItem[]
@@ -52,4 +47,5 @@ export default cartSlice.reducer
 // // Definir seletores
 export const selectCartItems = (state: RootState): CartItem[] => state.reducer.cart.items
 export const selectCartTotal = (state: RootState): number => state.reducer.cart.items.reduce((total, item) => total + item.product.price * item.quantity, 0)
+export const selectCartTotalItems = (state: RootState): number => state.reducer.cart.items.reduce((total, item) => total + item.quantity, 0)
 export const isProductInCartSelector = (state: RootState, productId: number): boolean => state.reducer.cart.items.some(item => item.product.id === productId)
