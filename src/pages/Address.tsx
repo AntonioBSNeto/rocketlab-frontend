@@ -12,6 +12,7 @@ import ufValidator from "../util/ufValidator";
 import { useCallback, useEffect } from "react";
 import { cepSearch } from "../services/externalApi/cep";
 import { normalizeCEP } from "../util/masks";
+import { useNavigate } from "react-router-dom";
 
 
 const validationSchema = object({
@@ -37,6 +38,8 @@ const validationSchema = object({
 export default function AddressPage() {
   const cartTotalProducts = useSelector(selectCartTotalItems);
   const cartTotal = useSelector(selectCartTotal);
+
+  const navigate = useNavigate()
 
   const {
     register,
@@ -101,7 +104,7 @@ export default function AddressPage() {
   )
 
   const renderOrderDetails = () => (
-    <Paper className="min-w-80 grow py-5 px-6 flex flex-col max-h-80 !my-9 max-sm:!my-3">
+    <Paper className="sm:min-w-80 grow py-5 px-6 flex flex-col max-h-80 !my-9 max-sm:!my-3">
       <p className="text-xl font-bold ">resumo pedido</p>
       <Box className="mt-7 flex flex-col gap-y-2">
         <Box className="flex justify-between text-[#666666] font-bold !text-sm">
@@ -128,7 +131,7 @@ export default function AddressPage() {
     <>
       <PaymentHeader step="" />
       <Container className=" bg-[#FAFAFB] max-sm:mt-4 mt-12 !rounded-2xl gap-x-10  !p-0" sx={{ maxWidth: { lg: 'calc(min(1024px, 90%))', xs: 'calc(min(1024px, 85%))' } }}>
-        <form onSubmit={handleSubmit((data) => console.log(data))}>
+        <form onSubmit={handleSubmit(() => navigate('/pagamento'))}>
           <div className="!flex p-8 max-[1050px]:flex-col gap-4 justify-between">
             <div>
               <Box className="flex  text-xl font-bold items-center gap-x-3">

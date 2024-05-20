@@ -3,6 +3,7 @@ import HomePage from './pages/Home'
 import ProductPage from './pages/Product'
 import CartPage from './pages/Cart'
 import AddressPage from './pages/Address'
+import PaymentPage from './pages/Payment'
 
 export default function Router () {
   return (
@@ -12,6 +13,7 @@ export default function Router () {
         <Route path='/produtos/:productId' element={<ProductPage />} />
         <Route path='/carrinho' element={<CartPage />} />
         <Route path='/endereco' element={<AddressPage />} />
+        <Route path='/pagamento' element={<PaymentPage />} />
       </Routes>
     </BrowserRouter>
   )

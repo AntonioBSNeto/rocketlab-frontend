@@ -28,12 +28,12 @@ export default function PaymentHeader({ step }: PaymentHeaderProps) {
           </Typography>
 
           <Box sx={{ display: 'flex flex-col', justifyContent: 'flex-end' }}>
-            <Box className="grid" sx={{ gridTemplateColumns: 'auto 300px auto' }}>
+            <Box className="grid" sx={{ gridTemplateColumns: { xs: 'auto 150px auto', sm: 'auto 300px auto' } }}>
               <div>
                 <div className={`${stepActived} rounded-full w-6 text-center mx-auto`}>1</div>
                 <div>entrega</div>
               </div>
-              <div className={`flex mt-[12px] ml-[-15px] h-[2px] flex-1 w-[343.6px] ${(step == 'payment') ? '!bg-white' : '!bg-white/60'} `}></div>
+              <div className={`flex mt-[12px] ml-[-15px] h-[2px] flex-1 max-sm:w-[193.6px] w-[343.6px] ${(step == 'payment') ? '!bg-white' : '!bg-white/60'} `}></div>
               <div>
                 <div className={`${(step == 'payment') ? stepActived : stepDesactivated} rounded-full w-6 text-center mx-auto`}>2</div>
                 <div className={`${(step == 'payment') ? '' : 'text-white/60'}`}>pagamento</div>
