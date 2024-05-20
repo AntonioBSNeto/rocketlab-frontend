@@ -1,14 +1,15 @@
 import { Box, Button, Container, Paper } from "@mui/material";
 import PaymentHeader from "../components/PaymentHeader";
 import priceFormat from "../util/priceFormat";
-import { useSelector } from "react-redux";
-import { selectCartTotal, selectCartTotalItems } from "../features/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart, selectCartTotal, selectCartTotalItems } from "../features/cartSlice";
 import VerticalTabs from "../components/PaymentVerticalTab";
 import { useNavigate } from "react-router-dom";
 
 export default function PaymentPage() {
   const cartTotalProducts = useSelector(selectCartTotalItems);
   const cartTotal = useSelector(selectCartTotal);
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
@@ -34,6 +35,7 @@ export default function PaymentPage() {
       </Box>
       <Button className="!bg-[#F80032] !text-white grow !text-base hover:!bg-[#F20544] hover:brightness-90 !mt-auto max-h-11 !lowercase !rounded-none" 
         onClick={() => {
+          dispatch(clearCart())
           window.alert('Compra realizada com sucesso!')
           navigate('')
          }}

@@ -59,7 +59,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <Typography component="div" color="#42464D" className="!text-sm overflow-hidden text-ellipsis" sx={{ maxHeight: '3.75rem', minHeight: '3.75rem' }}>
             {product.title}
           </Typography>
-          <Stars rate={3.6} amount={120} />
+          <Stars rate={product.rating.rate} amount={product.rating.count} />
           <Typography color="#42464D" className="!font-bold !mt-2">
             {priceFormat(product.price)}
           </Typography>

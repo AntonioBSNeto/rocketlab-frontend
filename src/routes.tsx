@@ -4,6 +4,7 @@ import ProductPage from './pages/Product'
 import CartPage from './pages/Cart'
 import AddressPage from './pages/Address'
 import PaymentPage from './pages/Payment'
+import DepartamentPage from './pages/Departament'
 
 export default function Router () {
   return (
@@ -14,6 +15,7 @@ export default function Router () {
         <Route path='/carrinho' element={<CartPage />} />
         <Route path='/endereco' element={<AddressPage />} />
         <Route path='/pagamento' element={<PaymentPage />} />
+        <Route path='/departamento/:category' element={<DepartamentPage />} />
       </Routes>
     </BrowserRouter>
   )

@@ -10,8 +10,12 @@ const getBestSoldProducts = (): Promise<Product[]> =>
 const getProduct = (productId: string): Promise<Product> =>
   API.get(`/${productId}`).then(response => response.data)
 
+const getCategory = (category: string): Promise<Product[]> =>
+  API.get(`/category/${category}`).then(response => response.data)
+
 export {
   getBestSoldProducts,
   getProduct,
+  getCategory
 };
 
