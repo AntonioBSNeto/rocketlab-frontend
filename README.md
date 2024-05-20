@@ -1,30 +1,25 @@
-# React + TypeScript + Vite
+# Projeto Frontend do RocketLab 2024
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Objetiuvo
 
-Currently, two official plugins are available:
+O objetivo deste projeto é avaliar o código e design quanto à funcionalidade, usabilidade e aderência aos requisitosestabelecidos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Requisitos
+- Eu gostaria de poder visualizar uma lista de produtos na Home;
+- Eu gostaria de poder visualizar informações de um produto;
+- Eu gostaria de poder adicionar ou remover produtos do meu carrinho de compras;
+- Eu gostaria de poder finalizar a compra do meu carrinho de compras.
 
-## Expanding the ESLint configuration
+Execução
+Para executar a aplicação, basta executar os seguintes comandos:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+  pnpm i
+  pnpm dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Páginas
+- **/**: Página inicial.
+- **/prodtos/:prodctId**: Página com detalhes de um produto.
+- **/carrinho:** Página com os itens que estão no carrinho.
+- **/departamento/:category** Página listando os produtos por categoria.
