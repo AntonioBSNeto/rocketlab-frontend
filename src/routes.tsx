@@ -5,6 +5,7 @@ import CartPage from './pages/Cart'
 import AddressPage from './pages/Address'
 import PaymentPage from './pages/Payment'
 import DepartamentPage from './pages/Departament'
+import SearchPage from './pages/SearchPage'
 
 export default function Router () {
   return (
@@ -16,6 +17,7 @@ export default function Router () {
         <Route path='/endereco' element={<AddressPage />} />
         <Route path='/pagamento' element={<PaymentPage />} />
         <Route path='/departamento/:category' element={<DepartamentPage />} />
+        <Route path='/busca/:searchValue' element={<SearchPage />} />
       </Routes>
     </BrowserRouter>
   )

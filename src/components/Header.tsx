@@ -9,6 +9,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,6 +58,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function ResponsiveAppBar() {
   const navigate = useNavigate()
 
+  const [searchValue, setSearchValue] = useState<string>('')
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      // Coloque aqui o código que você quer executar quando Enter for pressionado
+      navigate(`/busca/${searchValue}`)
+    }
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: '#F80032', height: '80px' }}>
@@ -78,6 +88,11 @@ export default function ResponsiveAppBar() {
             <StyledInputBase
               placeholder="Busque aqui"
               inputProps={{ 'aria-label': 'search' }}
+              value={searchValue}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setSearchValue(event.target.value);
+              }}
+              onKeyDown={handleKeyPress}
             />
           </Search>
           <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>

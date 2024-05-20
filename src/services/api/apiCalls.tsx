@@ -7,6 +7,9 @@ const getBestSoldProducts = (): Promise<Product[]> =>
   }).then(response => response.data);
 
 
+  const getAllProducts = (): Promise<Product[]> => 
+  API.get('').then(response => response.data);
+
 const getProduct = (productId: string): Promise<Product> =>
   API.get(`/${productId}`).then(response => response.data)
 
@@ -16,6 +19,7 @@ const getCategory = (category: string): Promise<Product[]> =>
 export {
   getBestSoldProducts,
   getProduct,
-  getCategory
+  getCategory,
+  getAllProducts
 };
 
