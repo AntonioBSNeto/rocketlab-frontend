@@ -66,7 +66,10 @@ export default function ProductCard({ product }: ProductCardProps) {
         </CardContent>
       </CardActionArea>
       <CardActions className="w-full !px-3 !pt-0 !pb-3">
-        <Button variant="contained" sx={{ background: '#F80032', borderRadius: '4px' }} className="grow !text-lg hover:!bg-[#F20544] hover:brightness-90 !capitalize !mt-2">comprar</Button>
+        <Button onClick={() => {
+          dispatch(addProduct({product, quantity: 1}))
+          navigate('/carrinho')
+        }} variant="contained" sx={{ background: '#F80032', borderRadius: '4px' }} className="grow !text-lg hover:!bg-[#F20544] hover:brightness-90 !capitalize !mt-2">comprar</Button>
       </CardActions>
     </Card>
   )

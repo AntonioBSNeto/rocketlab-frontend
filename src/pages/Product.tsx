@@ -41,7 +41,7 @@ export default function ProductPage() {
     }
 
     getPrdct()
-  }, []);
+  }, [productId]);
   
   const toggleCartItem = () => {
     if (product) {
@@ -62,7 +62,7 @@ export default function ProductPage() {
         <Box>
           <p className="text-xs mt-4">
             <span className="hover:cursor-pointer" onClick={() => navigate('/')}>home</span> &gt; 
-            <span className="hover:cursor-pointer"> {categoryMap[product?.category]}</span> &gt; 
+            <span className="hover:cursor-pointer" onClick={() => navigate(`/departamento/${product.category}`)}> {categoryMap[product?.category]}</span> &gt; 
             <span className="text-[#F80032] font-bold"> código: {product?.id}</span>
           </p>
         </Box>
@@ -81,7 +81,10 @@ export default function ProductPage() {
                 <p className="font-bold text-4xl text-[#42464D]">{priceFormat((product.price))}</p>
                 <span className="leading-none text-lg text-[#42464D]">à vista</span>
               </Paper>
-              <Button className="!font-bold !text-[#FFFFFF] rounded !bg-[#F80032] grow !text-lg hover:!bg-[#F20544] hover:brightness-90 !capitalize !mt-2 !mb-5 max-[550px]:!mb-3">
+              <Button onClick={() => {
+                dispatch(addProduct({product, quantity: 1}))
+                navigate('/carrinho')
+              }} className="!font-bold !text-[#FFFFFF] rounded !bg-[#F80032] grow !text-lg hover:!bg-[#F20544] hover:brightness-90 !capitalize !mt-2 !mb-5 max-[550px]:!mb-3">
                 Comprar
                 <ShoppingBasketIcon/>
               </Button>

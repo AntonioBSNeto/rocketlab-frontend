@@ -14,36 +14,17 @@ import { Icon } from '../types/IconInterface';
 import { getBestSoldProducts } from "../services/api/apiCalls";
 import { Product } from "../types/Product";
 import ProductCard from "../components/ProductCard";
+import { useNavigate } from "react-router-dom";
 
 const departmentIcons = [
-  { component: DiamondOutlinedIcon, key: 'diamond', value: 'Joias', sx: { color: '#F80032', fontSize: '7ch' } },
-  { component: DevicesIcon, key: 'devices', value: 'Eletrônicos', sx: { color: '#F80032', fontSize: '7ch' } },
-  { component: UserTieIcon, key: 'user-tie', value: 'Moda Masculina' },
-  { component: DressIcon, key: 'dress', value: 'Moda Feminina' },
+  { component: DiamondOutlinedIcon, key: 'jewelery', value: 'Joias', sx: { color: '#F80032', fontSize: '7ch' } },
+  { component: DevicesIcon, key: 'electronics', value: 'Eletrônicos', sx: { color: '#F80032', fontSize: '7ch' } },
+  { component: UserTieIcon, key: "men's clothing", value: 'Moda Masculina' },
+  { component: DressIcon, key: "women's clothing", value: 'Moda Feminina' },
 ]
 
-const renderDepartamentPapers = ({ component: IconComponent, key, value, sx }: Icon) => {
-  return (
-    <Paper key={key} sx={{ borderRadius: '50%' }} className="flex flex-col justify-center items-center hover:cursor-pointer hover:scale-110 max-sm:w-32 max-sm:h-32 w-40 h-40">
-      <IconComponent sx={sx} />
-      <Typography 
-        sx={{
-          fontWeight: 'bold',
-          fontSize: { xs: '12px', sm: '14px', md: '16px' },
-          textAlign: 'center',
-          wordWrap: 'break-word', 
-          '@media (max-width: 600px)': {
-            maxWidth: '90px',
-          },
-        }}
-      >
-        {value}
-      </Typography>
-    </Paper>
-  );
-};
-
 export default function HomePage() {
+  const navigate = useNavigate()
 
   const [bestSoldProducts, setBestSoldProducts] = useState<Product[]>([]);
 
@@ -60,8 +41,29 @@ export default function HomePage() {
     getBestSoldProd()
   }, [])
 
+  const renderDepartamentPapers = ({ component: IconComponent, key, value, sx }: Icon) => {
+    return (
+      <Paper key={key} sx={{ borderRadius: '50%' }} onClick={() => navigate(`/departamento/${key}`)} className="flex flex-col justify-center items-center hover:cursor-pointer hover:scale-110 max-sm:w-32 max-sm:h-32 w-40 h-40">
+        <IconComponent sx={sx} />
+        <Typography 
+          sx={{
+            fontWeight: 'bold',
+            fontSize: { xs: '12px', sm: '14px', md: '16px' },
+            textAlign: 'center',
+            wordWrap: 'break-word', 
+            '@media (max-width: 600px)': {
+              maxWidth: '90px',
+            },
+          }}
+        >
+          {value}
+        </Typography>
+      </Paper>
+    );
+  };
+
   const renderProducts = (products: Product[]) => {
-    return products.map(p => <Box className="max-w-48" key={p.id}><ProductCard product={p} /></Box>)
+    return products.map(p => <div className="max-w-48" key={p.id}><ProductCard product={p} /></div>)
   }
 
   return (

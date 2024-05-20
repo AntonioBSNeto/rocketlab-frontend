@@ -36,7 +36,7 @@ export default function DepartamentPage() {
     }
 
     getProducts()
-  }, [])
+  }, [category])
   
   const renderProducts = (products: Product[]) => {
     return products.map(p => <Box className="max-w-48" key={p.id}><ProductCard product={p} /></Box>)

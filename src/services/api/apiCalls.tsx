@@ -1,5 +1,5 @@
 import { Product } from "../../types/Product";
-import API from "./api";
+import { API } from "./api";
 
 const getBestSoldProducts = (): Promise<Product[]> => 
   API.get('', {
